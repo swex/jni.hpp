@@ -61,7 +61,6 @@ namespace jni
     R CheckJavaException(JNIEnv& env, R&& r)
        {
         if (env.ExceptionCheck()) {
-            env.ExceptionDescribe();
             throw PendingJavaException();
         }
         return std::move(r);
@@ -70,7 +69,6 @@ namespace jni
     inline void CheckJavaException(JNIEnv& env)
        {
         if (env.ExceptionCheck()) {
-            env.ExceptionDescribe();
             throw PendingJavaException();
         }
        }
